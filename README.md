@@ -35,7 +35,7 @@ Follow these steps for completing your project.
 
 - [x] Build a custom hook that let's you save data to localStorage
 - [x] Build a second custom hook that sets the `dark-mode` class on the body element
-- [ ] Compose your two new hooks together to be able to set and persist your user's dark mode preference in your app
+- [x] Compose your two new hooks together to be able to set and persist your user's dark mode preference in your app
 
 ## STEP 1 - useLocalStorage
 
