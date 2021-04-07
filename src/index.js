@@ -40,6 +40,8 @@ const useDarkMode = (initialBoolean) => {
   return [darkMode, setBodyDarkMode];
 };
 
+//
+
 const App = () => {
   const [coinData, setCoinData] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
