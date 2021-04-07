@@ -12,7 +12,7 @@ import "./styles.scss";
 const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     if (window.localStorage.getItem(key)) {
-      return window.localStorage.getItem(key);
+      return JSON.parse(window.localStorage.getItem(key));
       // If the key exists in localStorage then set the key's value to state
     } else {
       window.localStorage.setItem(key, JSON.stringify(initialValue));
@@ -21,9 +21,9 @@ const useLocalStorage = (key, initialValue) => {
     } //storedValue state
   });
 
-  const setLocalStoredValue = (storedValue) => {
-    window.localStorage.setItem(key, JSON.stringify(storedValue));
-    setStoredValue(storedValue);
+  const setLocalStoredValue = (newStoredValue) => {
+    window.localStorage.setItem(key, JSON.stringify(newStoredValue));
+    setStoredValue(newStoredValue);
   };
 
   return [storedValue, setLocalStoredValue];
@@ -33,7 +33,9 @@ const App = () => {
   const [coinData, setCoinData] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
 
-  const [testRun, setTestRun] = useLocalStorage("nothing", "I added this");
+  const [testRun, setTestRun] = useLocalStorage("edit", {
+    me: "I added this",
+  });
 
   useEffect(() => {
     console.log(testRun);
@@ -45,7 +47,7 @@ const App = () => {
       )
       .then((res) => setCoinData(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [testRun]);
   return (
     <div className={darkMode ? "dark-mode App" : "App"}>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
