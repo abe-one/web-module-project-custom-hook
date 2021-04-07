@@ -28,19 +28,17 @@ const useLocalStorage = (key, initialValue) => {
 }; //useLocalStorage
 
 const useDarkMode = (initialBoolean) => {
-  const [darkMode, setDarkMode] = useState(initialBoolean);
+  const [darkMode, setDarkMode] = useLocalStorage("localDark", initialBoolean);
 
   const setBodyDarkMode = (newBoolean) => {
     setDarkMode(newBoolean);
     if (newBoolean) {
       return document.querySelector("body").classList.add("dark-mode");
-    }
+    } //else for readability?
     return document.querySelector("body").classList.remove("dark-mode");
   };
   return [darkMode, setBodyDarkMode];
 };
-
-//
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
